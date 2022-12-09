@@ -220,7 +220,7 @@
 
 <?php include 'common/footer.php'; ?>
 
-<script src="js/dashboard.js"></script>
+<script src="js/patients.js"></script>
 
 </body>
 </html>
