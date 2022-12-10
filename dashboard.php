@@ -39,24 +39,24 @@
     <?php include 'common/nav-side.php'; ?>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 mt-3 border-bottom">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 mt-3">
         <div class="container">
           <div class="row row-cols-1 row-cols-md-6 text-center">
             <div class="col">
-              <div class="card mb-4 rounded-3 shadow-sm border-primary">
-                <div class="card-header py-3 text-bg-primary border-primary">
-                  <h4 class="my-0 fw-normal">Encountered</h4>
+              <div class="card mb-4 rounded-3 shadow-sm border-warning">
+                <div class="card-header py-3 text-bg-warning border-warning" >
+                  <h5 class="my-0 fw-normal">COVID-19 ENCOUNTER</h5>
                 </div>
-                <div class="card-body">
+                <div class="card-body" >
                   <h1 class="card-title pricing-card-title">2,390</h1>
                   <button type="button" class="w-100 btn btn-lg btn-primary">View</button>
                 </div>
               </div>
             </div>
             <div class="col">
-              <div class="card mb-4 rounded-3 shadow-sm">
-                <div class="card-header py-3">
-                  <h4 class="my-0 fw-normal">Diagnosed</h4>
+              <div class="card mb-4 rounded-3 shadow-sm border-success">
+                <div class="card-header py-3 text-bg-success border-success">
+                  <h5 class="my-0 fw-normal">VACCINATED</h5>
                 </div>
                 <div class="card-body">
                   <h1 class="card-title pricing-card-title">1,829</h1>
@@ -65,9 +65,9 @@
               </div>
             </div>
             <div class="col">
-              <div class="card mb-4 rounded-3 shadow-sm">
-                <div class="card-header py-3">
-                  <h4 class="my-0 fw-normal">With Fever</h4>
+              <div class="card mb-4 rounded-3 shadow-sm border-danger">
+                <div class="card-header py-3 text-bg-danger border-danger">
+                  <h5 class="my-0 fw-normal">WITH FEVER</h5>
                 </div>
                 <div class="card-body">
                   <h1 class="card-title pricing-card-title">369</h1>
@@ -76,9 +76,9 @@
               </div>
             </div>
             <div class="col">
-              <div class="card mb-4 rounded-3 shadow-sm">
-                <div class="card-header py-3">
-                  <h4 class="my-0 fw-normal">Vaccinated</h4>
+              <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                <div class="card-header py-3 text-bg-primary border-primary">
+                  <h5 class="my-0 fw-normal">ADULTS</h5>
                 </div>
                 <div class="card-body">
                   <h1 class="card-title pricing-card-title">374</h1>
@@ -87,9 +87,9 @@
               </div>
             </div>
             <div class="col">
-              <div class="card mb-4 rounded-3 shadow-sm">
-                <div class="card-header py-3">
-                  <h4 class="my-0 fw-normal">Adults</h4>
+              <div class="card mb-4 rounded-3 shadow-sm border-secondary">
+                <div class="card-header py-3 text-bg-secondary border-secondary">
+                  <h5 class="my-0 fw-normal">MINORS</h5>
                 </div>
                 <div class="card-body">
                   <h1 class="card-title pricing-card-title">120</h1>
@@ -98,9 +98,9 @@
               </div>
             </div>
             <div class="col">
-              <div class="card mb-4 rounded-3 shadow-sm">
-                <div class="card-header py-3">
-                  <h4 class="my-0 fw-normal">Minors</h4>
+              <div class="card mb-4 rounded-3 shadow-sm border-info">
+                <div class="card-header py-3 text-bg-info border-info">
+                  <h5 class="my-0 fw-normal">FOREIGNERS</h5>
                 </div>
                 <div class="card-body">
                   <h1 class="card-title pricing-card-title">78</h1>
@@ -112,9 +112,7 @@
         </div>
       </div>
 
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 mt-3">
-        <h1 class="h2">List of Patients</h1>
-      </div>
+      <h2>List of Patients</h2>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
@@ -245,8 +243,18 @@
         </table>
       </div>
 
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 mt-3">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Volume of Patients</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+          </div>
+          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar" class="align-text-bottom"></span>
+            This week
+          </button>
+        </div>
       </div>
 
       <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
