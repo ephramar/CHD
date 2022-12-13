@@ -3,7 +3,7 @@
 	$dbhost = 'localhost';
 	$dbuser = 'root';
 	$dbpass = '';
-	$dbname = 'db_chd';
+	$dbname = 'casestudy';
 
 	$connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
