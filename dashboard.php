@@ -1,18 +1,18 @@
 <?php
-session_start();
-if(!isset($_SESSION['uid'])) {
-    header("location: index.php");
-    die();
-}
+  session_start();
+  if(!isset($_SESSION['uid'])) {
+      header("location: index.php");
+      die();
+  }
 
-include './api/connection.php';
+  include './api/connection.php';
 
-if (!$connection) {
-	die('Connection failed: ' . mysqli_connect_error());
-}
+  if (!$connection) {
+  	die('Connection failed: ' . mysqli_connect_error());
+  }
 
-$query = "SELECT * FROM tbl_patients";
-$result = mysqli_query($connection, $query);
+  $query = "SELECT * FROM tbl_patients";
+  $result = mysqli_query($connection, $query);
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,7 +41,7 @@ $result = mysqli_query($connection, $query);
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
+  <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search" id="keyword">
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
       <a class="nav-link px-3" href="logout.php">Sign out</a>

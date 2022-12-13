@@ -5,7 +5,7 @@
     // Check the connection
     if (!$connection) die("Connection failed: " . mysqli_connect_error());
 
-    $sql = "DELETE FROM tbl_patients WHERE pt_id = " . $_POST['pt_id'];
+    $sql = "DELETE FROM tbl_patients WHERE pt_id = " . $_POST['patientID'];
 
     if (mysqli_query($connection, $sql)) {
         $success = true;

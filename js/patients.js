@@ -1,4 +1,3 @@
-
 displayPatientList = (data) => {
 	let output = `
 		<tr>
@@ -12,8 +11,8 @@ displayPatientList = (data) => {
 			<td>${data.vaccinated}</td>
 			<td>${data.encoded}</td>
 			<td>
-				<button type="button" class="btn btn-info btn-sm" onclick="editParticipant(${data.id})">Edit</button>
-                <button type="button" class="btn btn-danger btn-sm" onclick="deleteParticipant(${data.id})">Delete</button>
+				<button type="button" class="btn btn-info btn-sm" onclick="editPatient(${data.id})">Edit</button>
+                <button type="button" class="btn btn-danger btn-sm" onclick="deletePatient(${data.id})">Delete</button>
 			</td>
 		</tr>
 	`;
@@ -54,74 +53,85 @@ getPatientList = (data) => {
 	});
 }
 
+const btnSave = document.querySelector('#btnSave');
+btnSave.addEventListener('click', (e) => {
+	e.preventDefault();
+
+	let id = $('#patientID').val();
+	let name = $('#patientName').val();
+	let age = $('#patientBirthday').val();
+	let gender = $('#patientGender').val();
+	let nationality = $('#patientNationality').val();
+	let diagnosed = $('#patientDiagnosis').val();
+	let encountered = $('#patientEncounter').val();
+	let vaccinated = $('#patientVaccine').val();
+
+	let data = { id, name, age, gender, nationality, diagnosed, encountered, vaccinated };
+
+	if (btnSave.innerHTML === "Save") {
+		addPatient(data);
+	} else {
+		editPatient(data);
+	}
+
+	$('#modalForm').modal('hide');
+
+});
+
 // Add new patient
-addNewPatient = (data) => {
+addPatient = (data) => {
 	$.ajax({
-		url: window.siteurl + 'api/addPatient.php',
+		url: window.siteurl + 'api/add-patient.php',
 		method: 'POST',
 		data: data,
 		dataType: 'json',
 		success: (response) => {
 			if (response) {
 				data.id = response;
-				insertNewRowToTable(data);
+				getPatientList(data);
 			}
 		}
 	});
+
+	console.log(data);
 }
 
-editParticipant = (id) => {
+editPatient = (id) => {
     $.ajax({
-        url: window.siteurl + 'api/editPatient.php',
+        url: window.siteurl + 'api/edit-patient.php',
         method: 'GET',
         data: { id: id },
         dataType: 'json',
         success: (response) => {        
-            $('#addModalForm').modal('show');
-            $('#addModalFormLabel').html('Update Participant');  
+            $('#modalForm').modal('show');
+            $('#modalFormLabel').html('Update Participant');  
             btnSave.innerHTML = 'Update';      
             
             $.each(response, (key, value) => {
-                $('#id').val(value.id);
-                $('#name').val(value.name);
-                $('#age').val(value.age);
-                $('#gender').val(value.gender);
-                $('#nationality').val(value.nationality);
-                $('#diagnosed').val(value.diagnosed);
-                $('#encountered').val(value.encountered);
-				$('#vaccinated').val(value.vaccinated);
-				$('#encoded').val(value.encoded);
+                $('#patientID').val(value.id);
+                $('#patientName').val(value.name);
+                $('#patientBirthday').val(value.age);
+                $('#patientGender').val(value.gender);
+                $('#patientNationality').val(value.nationality);
+                $('#patientDiagnosis').val(value.diagnosed);
+                $('#patientEncounter').val(value.encountered);
+				$('#patientVaccine').val(value.vaccinated);
+				$('#patientEncoded').val(value.encoded);
             });
         }
     });    
 }
 
-deleteParticipant = (id) => {
+deletePatient = (id) => {
     let response = confirm('Do you want to delete this participant with an id: ' + id + '?');
 
     if (response) {
         $.ajax({
-            url: window.siteurl + 'api/deleteParticipant.php',
+            url: window.siteurl + 'api/delete-patient.php',
             method: 'POST',
             data: { id: id },
             dataType: 'json',
-            success: () => { getParticipants() }
+            success: () => { getPatientList() }
         });
     }
 }
-
-const addBtn = document.getElementById("addBtn");
-addBtn.addEventListener('click', (e) => {
-	console.log('tite');
-	e.preventDefault();
-	$('#patientName').val('');
-	$('#patientGender').val('');
-	$('#patientBirthday').val('');
-	$('#patientNationality').val('');
-	$('#patientMobile').val('');
-	$('#patientTemp').val('');
-	$('#patientDiagnosis').val('');
-	$('#patientEncounter').val('');
-	$('#patientVaccine').val('');
-
-});
