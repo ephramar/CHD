@@ -1,3 +1,6 @@
+<?php
+require_once 'config.php';
+?>
 <!DOCTYPE html>
 <html>
 
@@ -25,6 +28,7 @@
   <link rel="mask-icon" href="https://getbootstrap.com/docs/5.2/assets/img/favicons/safari-pinned-tab.svg"
     color="#712cf9">
   <link rel="icon" href="https://getbootstrap.com/docs/5.2/assets/img/favicons/favicon.ico">
+  <script>window.siteurl = '<?php echo URL; ?>';</script>
 </head>
 
 <body>
@@ -56,7 +60,7 @@
             name="addBtn">Add New Patient</button>
         </div>
         <div class="table-responsive">
-          <table class="table table-striped" id="patient-list">
+          <table class="table table-striped" id="patientList">
             <thead>
               <tr>
                 <th scope="col">No.</th>
@@ -71,7 +75,7 @@
                 <th scope="col">Action</th>
               </tr>
             </thead>
-            <tbody id="patientList">
+            <tbody>
             </tbody>
           </table>
         </div>
@@ -146,36 +150,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"></script>
-      
-    <script>
-      getPatientList = (data) => {
-        $.ajax({
-          url: '/api/get-patients.php',
-          method: 'POST',
-          data: {},
-          dataType: 'json',
-          success: (response) => {
-            $('#patientList tbody').empty();
-
-            $.each(response, (key, value) => {
-              const data = {
-                id: value.pt_id,
-                name: value.pt_name,
-                age: value.pt_dob,
-                gender: value.pt_gender,
-                nationality: value.pt_nationality,
-                diagnosed: value.pt_diagnosis,
-                encountered: value.pt_encounter,
-                vaccinated: value.pt_vaccine,
-                encoded: value.pt_data_creation
-              }
-
-              displayPatientList(data);
-            });
-          }
-        });
-      }
-    </script>
 </body>
 
 </html>

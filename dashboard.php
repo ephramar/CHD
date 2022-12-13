@@ -1,3 +1,19 @@
+<?php
+session_start();
+if(!isset($_SESSION['uid'])) {
+    header("location: index.php");
+    die();
+}
+
+include './api/connection.php';
+
+if (!$connection) {
+	die('Connection failed: ' . mysqli_connect_error());
+}
+
+$query = "SELECT * FROM tbl_patients";
+$result = mysqli_query($connection, $query);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +44,7 @@
   <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="#">Sign out</a>
+      <a class="nav-link px-3" href="logout.php">Sign out</a>
     </div>
   </div>
 </header>
@@ -129,116 +145,23 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Ephramar A. Telog</td>
-              <td>33</td>
-              <td>Male</td>
-              <td>Filipino</td>
-              <td>No</td>
-              <td>No</td>
-              <td>Yes</td>
-              <td>2022-12-08 11:41:15</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Ephramar A. Telog</td>
-              <td>33</td>
-              <td>Male</td>
-              <td>Filipino</td>
-              <td>No</td>
-              <td>No</td>
-              <td>Yes</td>
-              <td>2022-12-08 11:41:15</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Ephramar A. Telog</td>
-              <td>33</td>
-              <td>Male</td>
-              <td>Filipino</td>
-              <td>No</td>
-              <td>No</td>
-              <td>Yes</td>
-              <td>2022-12-08 11:41:15</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Ephramar A. Telog</td>
-              <td>33</td>
-              <td>Male</td>
-              <td>Filipino</td>
-              <td>No</td>
-              <td>No</td>
-              <td>Yes</td>
-              <td>2022-12-08 11:41:15</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>Ephramar A. Telog</td>
-              <td>33</td>
-              <td>Male</td>
-              <td>Filipino</td>
-              <td>No</td>
-              <td>No</td>
-              <td>Yes</td>
-              <td>2022-12-08 11:41:15</td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>Ephramar A. Telog</td>
-              <td>33</td>
-              <td>Male</td>
-              <td>Filipino</td>
-              <td>No</td>
-              <td>No</td>
-              <td>Yes</td>
-              <td>2022-12-08 11:41:15</td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>Ephramar A. Telog</td>
-              <td>33</td>
-              <td>Male</td>
-              <td>Filipino</td>
-              <td>No</td>
-              <td>No</td>
-              <td>Yes</td>
-              <td>2022-12-08 11:41:15</td>
-            </tr>
-            <tr>
-              <td>8</td>
-              <td>Ephramar A. Telog</td>
-              <td>33</td>
-              <td>Male</td>
-              <td>Filipino</td>
-              <td>No</td>
-              <td>No</td>
-              <td>Yes</td>
-              <td>2022-12-08 11:41:15</td>
-            </tr>
-            <tr>
-              <td>9</td>
-              <td>Ephramar A. Telog</td>
-              <td>33</td>
-              <td>Male</td>
-              <td>Filipino</td>
-              <td>No</td>
-              <td>No</td>
-              <td>Yes</td>
-              <td>2022-12-08 11:41:15</td>
-            </tr>
-            <tr>
-              <td>10</td>
-              <td>Ephramar A. Telog</td>
-              <td>33</td>
-              <td>Male</td>
-              <td>Filipino</td>
-              <td>No</td>
-              <td>No</td>
-              <td>Yes</td>
-              <td>2022-12-08 11:41:15</td>
-            </tr>
+            <?php
+            while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+              <tr>
+                <td><?php echo $row['pt_id']; ?></td>
+                <td><?php echo $row['pt_name']; ?></td>
+                <td><?php echo $row['pt_dob']; ?></td>
+                <td><?php echo $row['pt_gender']; ?></td>
+                <td><?php echo $row['pt_nationality']; ?></td>
+                <td><?php echo $row['pt_diagnosis']; ?></td>
+                <td><?php echo $row['pt_encounter']; ?></td>
+                <td><?php echo $row['pt_vaccine']; ?></td>
+                <td><?php echo $row['pt_data_creation']; ?></td>
+              </tr>
+            <?php
+            }
+            ?>            
           </tbody>
         </table>
       </div>

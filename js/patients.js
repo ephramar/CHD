@@ -1,3 +1,4 @@
+
 displayPatientList = (data) => {
 	let output = `
 		<tr>
@@ -18,7 +19,7 @@ displayPatientList = (data) => {
 	`;
 
 	let patientList = $('#patientList tbody');
-	participantList.append(output);
+	patientList.append(output);
 }
 
 window.addEventListener('load', () => {
@@ -27,7 +28,7 @@ window.addEventListener('load', () => {
 
 getPatientList = (data) => {
 	$.ajax({
-		url: '/api/get-patients.php',
+		url: window.siteurl + 'api/get-patients.php',
 		method: 'POST',
 		data: {},
 		dataType: 'json',
@@ -56,7 +57,7 @@ getPatientList = (data) => {
 // Add new patient
 addNewPatient = (data) => {
 	$.ajax({
-		url: './api/addPatient.php',
+		url: window.siteurl + 'api/addPatient.php',
 		method: 'POST',
 		data: data,
 		dataType: 'json',
@@ -71,7 +72,7 @@ addNewPatient = (data) => {
 
 editParticipant = (id) => {
     $.ajax({
-        url: './api/getParticipant.php',
+        url: window.siteurl + 'api/editPatient.php',
         method: 'GET',
         data: { id: id },
         dataType: 'json',
@@ -100,7 +101,7 @@ deleteParticipant = (id) => {
 
     if (response) {
         $.ajax({
-            url: './api/deleteParticipant.php',
+            url: window.siteurl + 'api/deleteParticipant.php',
             method: 'POST',
             data: { id: id },
             dataType: 'json',

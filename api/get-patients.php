@@ -17,7 +17,7 @@ $result = mysqli_query($connection, $query);
 $patients = array();
 
 while ($row = mysqli_fetch_assoc($result)) {
-	$participants[] = $row;
+	$patients[] = $row;
 }
 
 header('Content-type: application/json');
