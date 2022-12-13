@@ -18,9 +18,12 @@ displayPatientList = (data) => {
 	`;
 
 	let patientList = $('#patientList tbody');
-
-	patientList.append($output);
+	participantList.append(output);
 }
+
+window.addEventListener('load', () => {
+	getPatientList();
+});
 
 getPatientList = (data) => {
 	$.ajax({
@@ -31,7 +34,7 @@ getPatientList = (data) => {
 		success: (response) => {
 			$('#patientList tbody').empty();
 
-			$.each(response, (key, value)) => {
+			$.each(response, (key, value) => {
 				const data = {
 					id: value.pt_id,
 					name: value.pt_name,
@@ -45,11 +48,79 @@ getPatientList = (data) => {
 				}
 
 				displayPatientList(data);
+			});
+		}
+	});
+}
+
+// Add new patient
+addNewPatient = (data) => {
+	$.ajax({
+		url: './api/addPatient.php',
+		method: 'POST',
+		data: data,
+		dataType: 'json',
+		success: (response) => {
+			if (response) {
+				data.id = response;
+				insertNewRowToTable(data);
 			}
 		}
 	});
 }
 
-window.addEventListener('load', () => {
-	getPatientList();
+editParticipant = (id) => {
+    $.ajax({
+        url: './api/getParticipant.php',
+        method: 'GET',
+        data: { id: id },
+        dataType: 'json',
+        success: (response) => {        
+            $('#addModalForm').modal('show');
+            $('#addModalFormLabel').html('Update Participant');  
+            btnSave.innerHTML = 'Update';      
+            
+            $.each(response, (key, value) => {
+                $('#id').val(value.id);
+                $('#name').val(value.name);
+                $('#age').val(value.age);
+                $('#gender').val(value.gender);
+                $('#nationality').val(value.nationality);
+                $('#diagnosed').val(value.diagnosed);
+                $('#encountered').val(value.encountered);
+				$('#vaccinated').val(value.vaccinated);
+				$('#encoded').val(value.encoded);
+            });
+        }
+    });    
+}
+
+deleteParticipant = (id) => {
+    let response = confirm('Do you want to delete this participant with an id: ' + id + '?');
+
+    if (response) {
+        $.ajax({
+            url: './api/deleteParticipant.php',
+            method: 'POST',
+            data: { id: id },
+            dataType: 'json',
+            success: () => { getParticipants() }
+        });
+    }
+}
+
+const addBtn = document.getElementById("addBtn");
+addBtn.addEventListener('click', (e) => {
+	console.log('tite');
+	e.preventDefault();
+	$('#patientName').val('');
+	$('#patientGender').val('');
+	$('#patientBirthday').val('');
+	$('#patientNationality').val('');
+	$('#patientMobile').val('');
+	$('#patientTemp').val('');
+	$('#patientDiagnosis').val('');
+	$('#patientEncounter').val('');
+	$('#patientVaccine').val('');
+
 });

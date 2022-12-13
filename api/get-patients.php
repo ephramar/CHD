@@ -1,28 +1,28 @@
 <?php
 
-	include 'connection.php';
+include 'connection.php';
 
-	if (!$connection) {
-		die('Connection failed: ' . mysqli_connect_error());
-	}
+if (!$connection) {
+	die('Connection failed: ' . mysqli_connect_error());
+}
 
-	$query = "SELECT * FROM tbl_patients ORDER BY pt_data_creation DESC";
+$query = "SELECT * FROM tbl_patients";
 
-	if (isset($_GET['keyword'])) {
-		$query = "SELECT * FROM tbl_patients WHERE tbl_patients LIKE '". $_GET['keyword'] ."%'";
-	}
+if (isset($_GET['keyword'])) {
+	$query = "SELECT * FROM tbl_patients WHERE tbl_patients LIKE '" . $_GET['keyword'] . "%'";
+}
 
-	$result = mysqli_query($connection, $query);
+$result = mysqli_query($connection, $query);
 
-	$patients = array();
+$patients = array();
 
-	while ($row = mysqli_fetch_assoc(($result)) {
-		$patients[] = $row;
-	}
+while ($row = mysqli_fetch_assoc($result)) {
+	$participants[] = $row;
+}
 
-	header('Content-type: application/json');
-	echo json_encode($patients);
+header('Content-type: application/json');
+echo json_encode($patients);
 
-	mysqli_close($connection);
+mysqli_close($connection);
 
 ?>
