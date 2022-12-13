@@ -53,6 +53,7 @@
   <div class="row">
 
     <?php include 'common/nav-side.php'; ?>
+    <?php include 'api/functions.php'; ?>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 mt-3">
@@ -64,7 +65,7 @@
                   <h5 class="my-0 fw-normal">COVID-19 ENCOUNTER</h5>
                 </div>
                 <div class="card-body" >
-                  <h1 class="card-title pricing-card-title">2,390</h1>
+                  <h1 class="card-title pricing-card-title"><?php getPatientEncounter(); ?></h1>
                   <button type="button" class="w-100 btn btn-lg btn-primary">View</button>
                 </div>
               </div>
@@ -75,7 +76,7 @@
                   <h5 class="my-0 fw-normal">VACCINATED</h5>
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title pricing-card-title">1,829</h1>
+                  <h1 class="card-title pricing-card-title"><?php getPatientVaccinated() ?></h1>
                   <button type="button" class="w-100 btn btn-lg btn-outline-primary">View</button>
                 </div>
               </div>
@@ -86,7 +87,7 @@
                   <h5 class="my-0 fw-normal">WITH FEVER</h5>
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title pricing-card-title">369</h1>
+                  <h1 class="card-title pricing-card-title"><?php getPatientFever() ?></h1>
                   <button type="button" class="w-100 btn btn-lg btn-outline-primary">View</button>
                 </div>
               </div>
@@ -97,7 +98,7 @@
                   <h5 class="my-0 fw-normal">ADULTS</h5>
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title pricing-card-title">374</h1>
+                  <h1 class="card-title pricing-card-title"><?php getPatientAdults() ?></h1>
                   <button type="button" class="w-100 btn btn-lg btn-outline-primary">View</button>
                 </div>
               </div>
@@ -108,7 +109,7 @@
                   <h5 class="my-0 fw-normal">MINORS</h5>
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title pricing-card-title">120</h1>
+                  <h1 class="card-title pricing-card-title"><?php getPatientMinors() ?></h1>
                   <button type="button" class="w-100 btn btn-lg btn-outline-primary">View</button>
                 </div>
               </div>
@@ -119,7 +120,7 @@
                   <h5 class="my-0 fw-normal">FOREIGNERS</h5>
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title pricing-card-title">78</h1>
+                  <h1 class="card-title pricing-card-title"><?php getPatientForeigners() ?></h1>
                   <button type="button" class="w-100 btn btn-lg btn-outline-primary">View</button>
                 </div>
               </div>

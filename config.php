@@ -1,3 +1,1 @@
-<?php
-define('URL', 'http://localhost/CHD/');
-?>
+<?php define('URL', 'http://localhost/CHD/'); ?>

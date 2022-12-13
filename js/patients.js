@@ -92,8 +92,6 @@ addPatient = (data) => {
 			}
 		}
 	});
-
-	console.log(data);
 }
 
 editPatient = (id) => {
